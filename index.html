@@ -268,6 +268,42 @@
         .emoji {
             font-size: 20px;
         }
+
+        /* Product Image Gallery */
+        .product-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .product-gallery-item {
+            background: #f9fafb;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .product-gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-gallery-item .caption {
+            padding: 12px;
+            text-align: center;
+            font-size: 13px;
+            color: #374151;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -460,6 +496,12 @@
                     <td>30ml / Dual-functional (Brightening + Anti-wrinkle)</td>
                 </tr>
             </table>
+
+            <h3>Product Overview & Clinical Data</h3>
+            <div class="clinical-image" style="display: flex; flex-direction: column; gap: 16px;">
+                <img src="images/rejucelique-brochure.png" alt="REJU:CELIQUE Product Brochure" style="width: 100%; border-radius: 12px; border: 1px solid #e5e7eb;">
+                <img src="images/rejucelique-clinical.png" alt="REJU:CELIQUE Clinical Data - PDRN Dual Repair Cream & Ampoule" style="width: 100%; border-radius: 12px; border: 1px solid #e5e7eb;">
+            </div>
 
             <h3>Key Ingredients</h3>
             <p style="margin: 12px 0;">
