@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEP AI × T&B International | K-beauty Spain Export</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #FAFBFC;
+            color: #1a1a1a;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 0;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 48px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #6b7280;
+        }
+
+        .date {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 8px 16px;
+            background: #f3f4f6;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        /* Section */
+        section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border: 1px solid #e5e7eb;
+        }
+
+        section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        section h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #374151;
+            margin: 24px 0 12px 0;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+            width: 35%;
+        }
+
+        td {
+            color: #4b5563;
+        }
+
+        /* Links */
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        .link-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: #eff6ff;
+            border-radius: 8px;
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .link-box:hover {
+            background: #dbeafe;
+        }
+
+        /* Feedback List */
+        .feedback-item {
+            padding: 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin: 12px 0;
+            border-left: 4px solid #e5e7eb;
+        }
+
+        .feedback-item.positive {
+            border-left-color: #22c55e;
+        }
+
+        .feedback-item.negative {
+            border-left-color: #ef4444;
+        }
+
+        .feedback-item strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #111;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-right: 6px;
+        }
+
+        .tag.green {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .tag.red {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .tag.blue {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        /* Discussion Points */
+        .discussion-list {
+            list-style: none;
+        }
+
+        .discussion-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .discussion-list li:last-child {
+            border-bottom: none;
+        }
+
+        .num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #111;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* Reference Section */
+        .reference-box {
+            background: #fefce8;
+            border: 1px solid #fde047;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+
+        .reference-box h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #854d0e;
+            margin-bottom: 12px;
+        }
+
+        /* Clinical Data */
+        .clinical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .clinical-item {
+            background: #f0fdf4;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .clinical-item .value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #16a34a;
+        }
+
+        .clinical-item .label {
+            font-size: 13px;
+            color: #4b5563;
+            margin-top: 4px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        /* Emoji sizing */
+        .emoji {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🤝 STEP AI × T&B International</h1>
+            <p>Korea-Spain K-beauty Export Partnership</p>
+            <span class="date">📅 2025.02 Conference</span>
+        </header>
+
+        <!-- Section 1: Partnership Overview -->
+        <section>
+            <h2><span class="emoji">🎯</span> Partnership Overview</h2>
+            <table>
+                <tr>
+                    <th>Objective</th>
+                    <td>한국-스페인 Cross-border Trade 기회 발굴</td>
+                </tr>
+                <tr>
+                    <th>Phase 1</th>
+                    <td>K-beauty 스페인 시장 진출 (소싱 및 ODM)</td>
+                </tr>
+                <tr>
+                    <th>Phase 2+</th>
+                    <td>카테고리 확장 (F&B, Lifestyle 등)</td>
+                </tr>
+            </table>
+
+            <h3>Partners</h3>
+            <table>
+                <tr>
+                    <th>🇰🇷 STEP AI</th>
+                    <td>Business Consulting & Strategy (Korea)</td>
+                </tr>
+                <tr>
+                    <th>🇪🇸 T&B International</th>
+                    <td>Local Distribution & Operations (Spain)</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 2: T&B International -->
+        <section>
+            <h2><span class="emoji">🏢</span> T&B PARK INTERNATIONAL CO., SL</h2>
+            <table>
+                <tr>
+                    <th>Legal Entity</th>
+                    <td>Sociedad Limitada (SL)</td>
+                </tr>
+                <tr>
+                    <th>Established</th>
+                    <td>2025.12.05</td>
+                </tr>
+                <tr>
+                    <th>Headquarters</th>
+                    <td>Calle Cabo de Palos, Nº 11, Las Rozas de Madrid, 28290, Spain</td>
+                </tr>
+                <tr>
+                    <th>Representative</th>
+                    <td>PARK HYUN JOO (Rose)</td>
+                </tr>
+                <tr>
+                    <th>Business Scope</th>
+                    <td>CNAE 46.90 - Wholesale Trade (Intermediary)</td>
+                </tr>
+                <tr>
+                    <th>Tax ID (NIF)</th>
+                    <td>B24977886</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 3: Rose's Picks K-beauty -->
+        <section>
+            <h2><span class="emoji">🌹</span> Rose's Picks K-beauty</h2>
+            <p style="margin-bottom: 16px; color: #4b5563;"><strong>Curated K-beauty Distribution</strong> — 전문가 큐레이션 기반 신뢰성 확보</p>
+
+            <a href="https://rosespickskbeauty.com/" target="_blank" class="link-box">
+                🌐 Official Website →
+            </a>
+
+            <h3>ODM Product Development</h3>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <td>Serum (All-in-One Concept)</td>
+                </tr>
+                <tr>
+                    <th>Manufacturing Partner</th>
+                    <td>
+                        CNF Cosmetics<br>
+                        <a href="https://www.cnfcos.com/" target="_blank" class="link-box" style="margin-top: 8px;">
+                            🏭 CNF Website →
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>1st Sample QC 완료 / COA 대기</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Section 4: Product QC Report -->
+        <section>
+            <h2><span class="emoji">📋</span> 1st Sample QC Report</h2>
+            <p style="margin-bottom: 20px; color: #6b7280;">Panel: 6명 / Duration: 3일 / Method: Facial Application Test</p>
+
+            <div class="feedback-item positive">
+                <strong>✅ Viscosity & Spreadability</strong>
+                요청 스펙 충족, 피부 부담 없이 도포되며 흡수 속도 양호
+            </div>
+
+            <div class="feedback-item positive">
+                <strong>✅ Absorption Rate</strong>
+                빠른 흡수, 잔여 끈적임 없음
+                <br><span class="tag red">Action Required</span> 제형 존재감 부족 → 밸런스 재조정 필요
+            </div>
+
+            <div class="feedback-item negative">
+                <strong>❌ Elasticity & Adherence</strong>
+                탄력감 및 밀착력 미흡 → 성분 보강 또는 제형 재설계 검토
+            </div>
+
+            <div class="feedback-item negative">
+                <strong>❌ Moisturizing & Finish</strong>
+                수분 지속력 부족, 윤기감 미흡 → Hydration 성분 강화 필요
+            </div>
+
+            <div class="feedback-item negative">
+                <strong>❌ Standalone Performance</strong>
+                단독 사용 시 마무리감 부족 (추가 제품 필요하다는 피드백 다수)
+                <br><span class="tag blue">Product Concept</span> All-in-One 컨셉에 부합하도록 제형 보완 필요
+            </div>
+
+            <div class="feedback-item negative">
+                <strong>❌ Packaging UX</strong>
+                Dropper 사용 시 액체가 역류하는 현상 발생
+                <br>→ 용기 구조 또는 제형 점도 조정 필요
+            </div>
+
+            <div class="reference-box">
+                <h4>💡 Strategic Recommendation</h4>
+                <p>Target Skin Type 및 Core Benefit(진정/보습/장벽강화)을 명확히 정의하여 Brand Positioning 및 현지 유통 전략 수립 시 활용</p>
+            </div>
+        </section>
+
+        <!-- Section 5: Market Benchmark -->
+        <section>
+            <h2><span class="emoji">🔬</span> Market Benchmark: REJU:CELIQUE</h2>
+            <p style="margin-bottom: 16px; color: #6b7280;">Dermatologist-founded Brand — Target/Benefit이 명확히 정의된 레퍼런스</p>
+
+            <table>
+                <tr>
+                    <th>Brand</th>
+                    <td>REJU:CELIQUE (리쥬셀릭)</td>
+                </tr>
+                <tr>
+                    <th>Entity</th>
+                    <td>(주)제이알케이</td>
+                </tr>
+                <tr>
+                    <th>Affiliated Clinic</th>
+                    <td>
+                        리투클리닉<br>
+                        <a href="https://www.retooclinic.com/" target="_blank" class="link-box" style="margin-top: 8px;">
+                            🏥 Clinic Website →
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Brand Website</th>
+                    <td>
+                        <a href="https://rejucelique.com/" target="_blank" class="link-box">
+                            🌐 REJU:CELIQUE →
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+            <h3>Product Line</h3>
+            <table>
+                <tr>
+                    <th>PDRN Dual Repair Cream</th>
+                    <td>30g / Dual-functional (Brightening + Anti-wrinkle)</td>
+                </tr>
+                <tr>
+                    <th>PDRN Dual Repair Ampoule</th>
+                    <td>30ml / Dual-functional (Brightening + Anti-wrinkle)</td>
+                </tr>
+            </table>
+
+            <h3>Key Ingredients</h3>
+            <p style="margin: 12px 0;">
+                <span class="tag blue">Micro PDRN 1,500 ppm</span>
+                <span class="tag blue">Niosome Panthenol</span>
+                <span class="tag blue">Ceramide NP</span>
+                <span class="tag blue">10-type Hyaluronic Acid</span>
+                <span class="tag blue">Collagen-Elastin Complex</span>
+                <span class="tag blue">3GF Complex</span>
+            </p>
+
+            <h3>Core Benefits (Clearly Defined)</h3>
+            <p style="margin: 12px 0;">
+                <span class="tag green">Barrier Repair</span>
+                <span class="tag green">Anti-wrinkle</span>
+                <span class="tag green">Deep Hydration</span>
+            </p>
+
+            <h3>Clinical Data (Human Application Test)</h3>
+            <div class="clinical-grid">
+                <div class="clinical-item">
+                    <div class="value">18~19%</div>
+                    <div class="label">Skin Barrier Improvement</div>
+                </div>
+                <div class="clinical-item">
+                    <div class="value">107~118%</div>
+                    <div class="label">Moisture Barrier Effect</div>
+                </div>
+                <div class="clinical-item">
+                    <div class="value">29~32%</div>
+                    <div class="label">Triple Hydration</div>
+                </div>
+                <div class="clinical-item">
+                    <div class="value">8~12%</div>
+                    <div class="label">Wrinkle Reduction</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Agenda -->
+        <section>
+            <h2><span class="emoji">💬</span> Agenda</h2>
+            <ul class="discussion-list">
+                <li>
+                    <span class="num">1</span>
+                    <div>
+                        <strong>Formulation Optimization</strong><br>
+                        탄력감, 보습감, Standalone Performance 개선을 위한 CNF 협의 방향
+                    </div>
+                </li>
+                <li>
+                    <span class="num">2</span>
+                    <div>
+                        <strong>Core Benefit Definition</strong><br>
+                        단일 핵심 포지셔닝 설정 (Soothing / Hydration / Barrier Repair)
+                    </div>
+                </li>
+                <li>
+                    <span class="num">3</span>
+                    <div>
+                        <strong>Target Segmentation</strong><br>
+                        스페인 현지 소비자 기준 Target Persona 정의
+                    </div>
+                </li>
+                <li>
+                    <span class="num">4</span>
+                    <div>
+                        <strong>Packaging Improvement</strong><br>
+                        Dropper UX 이슈 해결 방안 (용기 구조 vs 제형 점도)
+                    </div>
+                </li>
+                <li>
+                    <span class="num">5</span>
+                    <div>
+                        <strong>Next Steps</strong><br>
+                        CNF 회신 일정, 2nd Sample 개발 및 검증 계획
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section 7: Quick Links -->
+        <section>
+            <h2><span class="emoji">🔗</span> Quick Links</h2>
+            <table>
+                <tr>
+                    <th>Rose's Picks K-beauty</th>
+                    <td><a href="https://rosespickskbeauty.com/" target="_blank">rosespickskbeauty.com</a></td>
+                </tr>
+                <tr>
+                    <th>CNF Cosmetics</th>
+                    <td><a href="https://www.cnfcos.com/" target="_blank">cnfcos.com</a></td>
+                </tr>
+                <tr>
+                    <th>리투클리닉</th>
+                    <td><a href="https://www.retooclinic.com/" target="_blank">retooclinic.com</a></td>
+                </tr>
+                <tr>
+                    <th>REJU:CELIQUE</th>
+                    <td><a href="https://rejucelique.com/" target="_blank">rejucelique.com</a></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>STEP AI × T&B International | Confidential</p>
+        </footer>
+    </div>
+</body>
+</html>
