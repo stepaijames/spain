@@ -31,7 +31,7 @@
             text-align: center;
             padding: 60px 0;
             border-bottom: 1px solid #e5e7eb;
-            margin-bottom: 48px;
+            margin-bottom: 32px;
         }
 
         header h1 {
@@ -56,31 +56,76 @@
             color: #4b5563;
         }
 
-        /* Section */
-        section {
-            background: #fff;
+        /* Accordion Styles */
+        .accordion {
+            margin-bottom: 12px;
             border-radius: 12px;
-            padding: 32px;
-            margin-bottom: 24px;
+            overflow: hidden;
             box-shadow: 0 1px 3px rgba(0,0,0,0.08);
             border: 1px solid #e5e7eb;
+            background: #fff;
         }
 
-        section h2 {
-            font-size: 20px;
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            padding: 20px 24px;
+            background: #fff;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background: #f9fafb;
+        }
+
+        .accordion-icon {
+            font-size: 12px;
+            margin-right: 16px;
+            color: #6b7280;
+            transition: transform 0.3s;
+            width: 16px;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(90deg);
+        }
+
+        .accordion-title {
+            font-size: 18px;
             font-weight: 700;
             color: #111;
-            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        section h3 {
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 5000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .accordion-body {
+            padding: 0 24px 24px 24px;
+        }
+
+        /* Section Content */
+        h3 {
             font-size: 17px;
             font-weight: 600;
             color: #374151;
             margin: 24px 0 12px 0;
+        }
+
+        h3:first-child {
+            margin-top: 0;
         }
 
         /* Table */
@@ -165,6 +210,7 @@
             font-size: 13px;
             font-weight: 500;
             margin-right: 6px;
+            margin-bottom: 4px;
         }
 
         .tag.green {
@@ -213,7 +259,7 @@
             flex-shrink: 0;
         }
 
-        /* Reference Section */
+        /* Reference Box */
         .reference-box {
             background: #fefce8;
             border: 1px solid #fde047;
@@ -256,6 +302,37 @@
             margin-top: 4px;
         }
 
+        /* Product Image */
+        .product-flex {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            margin-top: 16px;
+        }
+
+        .product-flex img {
+            width: 200px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .product-flex table {
+            flex: 1;
+        }
+
+        /* Clinical Images */
+        .clinical-image {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .clinical-image img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -264,45 +341,29 @@
             font-size: 14px;
         }
 
+        footer a {
+            color: #9ca3af;
+            margin: 0 8px;
+        }
+
+        footer a:hover {
+            color: #6b7280;
+        }
+
         /* Emoji sizing */
         .emoji {
             font-size: 20px;
         }
 
-        /* Product Image Gallery */
-        .product-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .product-gallery-item {
-            background: #f9fafb;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #e5e7eb;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .product-gallery-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-        }
-
-        .product-gallery-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .product-gallery-item .caption {
-            padding: 12px;
-            text-align: center;
-            font-size: 13px;
-            color: #374151;
-            font-weight: 500;
+        /* Responsive */
+        @media (max-width: 640px) {
+            .product-flex {
+                flex-direction: column;
+            }
+            .product-flex img {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
@@ -310,659 +371,685 @@
     <div class="container">
         <!-- Header -->
         <header>
-            <h1>🤝 STEP AI × T&B International</h1>
+            <h1>STEP AI × T&B International</h1>
             <p>Korea-Spain K-beauty Export Partnership</p>
-            <span class="date">📅 2025.02 Conference</span>
+            <span class="date">2025.02 Conference</span>
         </header>
 
-        <!-- Section 1: Partnership Overview -->
-        <section>
-            <h2><span class="emoji">🎯</span> Partnership Overview</h2>
-            <table>
-                <tr>
-                    <th>Objective</th>
-                    <td>한국-스페인 Cross-border Trade 기회 발굴</td>
-                </tr>
-                <tr>
-                    <th>Phase 1</th>
-                    <td>K-beauty 스페인 시장 진출 (소싱 및 ODM)</td>
-                </tr>
-                <tr>
-                    <th>Phase 2+</th>
-                    <td>카테고리 확장 (F&B, Lifestyle 등)</td>
-                </tr>
-            </table>
-
-            <h3>Partners</h3>
-            <table>
-                <tr>
-                    <th>🇰🇷 STEP AI</th>
-                    <td>Business Consulting & Strategy (Korea)</td>
-                </tr>
-                <tr>
-                    <th>🇪🇸 T&B International</th>
-                    <td>Local Distribution & Operations (Spain)</td>
-                </tr>
-            </table>
-        </section>
-
-        <!-- Section 2: T&B International -->
-        <section>
-            <h2><span class="emoji">🏢</span> T&B PARK INTERNATIONAL CO., SL</h2>
-            <table>
-                <tr>
-                    <th>Legal Entity</th>
-                    <td>Sociedad Limitada (SL)</td>
-                </tr>
-                <tr>
-                    <th>Established</th>
-                    <td>2025.12.05</td>
-                </tr>
-                <tr>
-                    <th>Headquarters</th>
-                    <td>Calle Cabo de Palos, Nº 11, Las Rozas de Madrid, 28290, Spain</td>
-                </tr>
-                <tr>
-                    <th>Representative</th>
-                    <td>PARK HYUN JOO (Rose)</td>
-                </tr>
-                <tr>
-                    <th>Business Scope</th>
-                    <td>CNAE 46.90 - Wholesale Trade (Intermediary)</td>
-                </tr>
-                <tr>
-                    <th>Tax ID (NIF)</th>
-                    <td>B24977886</td>
-                </tr>
-            </table>
-        </section>
-
-        <!-- Section 3: Rose's Picks K-beauty -->
-        <section>
-            <h2><span class="emoji">🌹</span> Rose's Picks K-beauty</h2>
-            <p style="margin-bottom: 16px; color: #4b5563;"><strong>Curated K-beauty Distribution</strong> — 전문가 큐레이션 기반 신뢰성 확보</p>
-
-            <a href="https://rosespickskbeauty.com/" target="_blank" class="link-box">
-                🌐 Official Website →
-            </a>
-
-            <h3>ODM Product Development</h3>
-            <table>
-                <tr>
-                    <th>Category</th>
-                    <td>Serum (All-in-One Concept)</td>
-                </tr>
-                <tr>
-                    <th>Manufacturing Partner</th>
-                    <td>
-                        CNF Cosmetics<br>
-                        <a href="https://www.cnfcos.com/" target="_blank" class="link-box" style="margin-top: 8px;">
-                            🏭 CNF Website →
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Status</th>
-                    <td>1st Sample QC 완료 / COA 대기</td>
-                </tr>
-            </table>
-        </section>
-
-        <!-- Section 4: Product QC Report -->
-        <section>
-            <h2><span class="emoji">📋</span> 1st Sample QC Report</h2>
-            <p style="margin-bottom: 20px; color: #6b7280;">Panel: 6명 / Duration: 3일 / Method: Facial Application Test</p>
-
-            <div class="feedback-item positive">
-                <strong>✅ Viscosity & Spreadability</strong>
-                요청 스펙 충족, 피부 부담 없이 도포되며 흡수 속도 양호
+        <!-- 1. Partnership Overview -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span class="accordion-icon">▶</span>
+                <span class="accordion-title"><span class="emoji">🎯</span> Partnership Overview</span>
             </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <table>
+                        <tr>
+                            <th>Objective</th>
+                            <td>한국-스페인 Cross-border Trade 기회 발굴</td>
+                        </tr>
+                        <tr>
+                            <th>Phase 1</th>
+                            <td>K-beauty 스페인 시장 진출 (소싱 및 ODM)</td>
+                        </tr>
+                        <tr>
+                            <th>Phase 2+</th>
+                            <td>카테고리 확장 (F&B, Lifestyle 등)</td>
+                        </tr>
+                    </table>
 
-            <div class="feedback-item positive">
-                <strong>✅ Absorption Rate</strong>
-                빠른 흡수, 잔여 끈적임 없음
-                <br><span class="tag red">Action Required</span> 제형 존재감 부족 → 밸런스 재조정 필요
-            </div>
-
-            <div class="feedback-item negative">
-                <strong>❌ Elasticity & Adherence</strong>
-                탄력감 및 밀착력 미흡 → 성분 보강 또는 제형 재설계 검토
-            </div>
-
-            <div class="feedback-item negative">
-                <strong>❌ Moisturizing & Finish</strong>
-                수분 지속력 부족, 윤기감 미흡 → Hydration 성분 강화 필요
-            </div>
-
-            <div class="feedback-item negative">
-                <strong>❌ Standalone Performance</strong>
-                단독 사용 시 마무리감 부족 (추가 제품 필요하다는 피드백 다수)
-                <br><span class="tag blue">Product Concept</span> All-in-One 컨셉에 부합하도록 제형 보완 필요
-            </div>
-
-            <div class="feedback-item negative">
-                <strong>❌ Packaging UX</strong>
-                Dropper 사용 시 액체가 역류하는 현상 발생
-                <br>→ 용기 구조 또는 제형 점도 조정 필요
-            </div>
-
-            <div class="reference-box">
-                <h4>💡 Strategic Recommendation</h4>
-                <p>Target Skin Type 및 Core Benefit(진정/보습/장벽강화)을 명확히 정의하여 Brand Positioning 및 현지 유통 전략 수립 시 활용</p>
-            </div>
-        </section>
-
-        <!-- Section 5: CNF Response -->
-        <section>
-            <h2><span class="emoji">📩</span> CNF Response</h2>
-
-            <h3>CNF 답변 요약</h3>
-            <table>
-                <tr>
-                    <th>항목</th>
-                    <th>CNF 답변</th>
-                </tr>
-                <tr>
-                    <td><strong>탄력감/밀착력</strong></td>
-                    <td>점도 상승으로 해결 가능, 추가 성분보다 점도 보완 권장 (단가 이슈)</td>
-                </tr>
-                <tr>
-                    <td><strong>흡수력/존재감</strong></td>
-                    <td>오일 성분 추가 시 해결 가능하나 사용감 완전히 달라짐</td>
-                </tr>
-                <tr>
-                    <td><strong>보습감/윤기감</strong></td>
-                    <td>오일 추가로 해결 가능</td>
-                </tr>
-                <tr>
-                    <td><strong>원스텝 컨셉</strong></td>
-                    <td>현재 제형은 토너/크림 병행용, 원스텝 시 베이스 처방 전면 변경 필요 (반유화/유화 타입)</td>
-                </tr>
-                <tr>
-                    <td><strong>용기 흐름성</strong></td>
-                    <td>점도 상승 시 늘어짐 현상 해결 가능, 용기 구조 변경은 CNF 불가</td>
-                </tr>
-                <tr>
-                    <td><strong>타겟 제품</strong></td>
-                    <td>타겟 제품(CORTHE 등) 실물 요청</td>
-                </tr>
-            </table>
-
-            <h3>CNF 요청 결정 사항</h3>
-            <ul class="discussion-list">
-                <li>
-                    <span class="num">1</span>
-                    <div>
-                        <strong>사용감 방향</strong><br>
-                        가볍게 유지 vs 무겁게 변경 (오일 추가)
-                    </div>
-                </li>
-                <li>
-                    <span class="num">2</span>
-                    <div>
-                        <strong>베이스 처방 변경</strong><br>
-                        원스텝 세럼으로 갈 것인지 (처방 전면 변경)
-                    </div>
-                </li>
-                <li>
-                    <span class="num">3</span>
-                    <div>
-                        <strong>타겟 제품 실물</strong><br>
-                        CORTHE 등 레퍼런스 제품 전달 가능 여부
-                    </div>
-                </li>
-            </ul>
-
-            <h3>📌 타겟 참고 제품</h3>
-            <div style="display: flex; gap: 24px; align-items: flex-start; margin-top: 16px;">
-                <img src="images/corthe-bifida.png" alt="CORTHE BIFIDA AMPOULE" style="width: 200px; border-radius: 8px; border: 1px solid #e5e7eb;">
-                <table style="flex: 1;">
-                    <tr>
-                        <th>브랜드</th>
-                        <td>CORTHE (코르테)</td>
-                    </tr>
-                    <tr>
-                        <th>제품 라인</th>
-                        <td>Dermo rejuvenation</td>
-                    </tr>
-                    <tr>
-                        <th>제품명</th>
-                        <td>BIFIDA AMPOULE</td>
-                    </tr>
-                    <tr>
-                        <th>용량</th>
-                        <td>50mL</td>
-                    </tr>
-                    <tr>
-                        <th>핵심 효능</th>
-                        <td>Anti-Wrinkle, Skin Barrier Protection, Nourishing</td>
-                    </tr>
-                    <tr>
-                        <th>비고</th>
-                        <td><span class="tag red">CNF에서 이 제품 실물 요청함</span></td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-
-        <!-- Section 6: Market Benchmark -->
-        <section>
-            <h2><span class="emoji">🔬</span> Reference: REJU:CELIQUE</h2>
-            <p style="margin-bottom: 16px; color: #6b7280;">Dermatologist-founded Brand — Target/Benefit이 명확히 정의된 레퍼런스</p>
-
-            <table>
-                <tr>
-                    <th>Brand</th>
-                    <td>REJU:CELIQUE (리쥬셀릭)</td>
-                </tr>
-                <tr>
-                    <th>Entity</th>
-                    <td>(주)제이알케이</td>
-                </tr>
-                <tr>
-                    <th>Affiliated Clinic</th>
-                    <td>
-                        리투클리닉<br>
-                        <a href="https://www.retooclinic.com/" target="_blank" class="link-box" style="margin-top: 8px;">
-                            🏥 Clinic Website →
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Brand Website</th>
-                    <td>
-                        <a href="https://rejucelique.com/" target="_blank" class="link-box">
-                            🌐 REJU:CELIQUE →
-                        </a>
-                    </td>
-                </tr>
-            </table>
-
-            <h3>Product Line</h3>
-            <table>
-                <tr>
-                    <th>PDRN Dual Repair Cream</th>
-                    <td>30g / Dual-functional (Brightening + Anti-wrinkle)</td>
-                </tr>
-                <tr>
-                    <th>PDRN Dual Repair Ampoule</th>
-                    <td>30ml / Dual-functional (Brightening + Anti-wrinkle)</td>
-                </tr>
-            </table>
-
-            <h3>Product Overview & Clinical Data</h3>
-            <div class="clinical-image" style="display: flex; flex-direction: column; gap: 16px;">
-                <img src="images/rejucelique-product.png" alt="REJU:CELIQUE 제품">
-                <img src="images/rejucelique-brochure.png" alt="REJU:CELIQUE 브로셔">
-                <img src="images/rejucelique-clinical.png" alt="REJU:CELIQUE 임상 데이터">
-            </div>
-
-            <h3>Key Ingredients</h3>
-            <p style="margin: 12px 0;">
-                <span class="tag blue">Micro PDRN 1,500 ppm</span>
-                <span class="tag blue">Niosome Panthenol</span>
-                <span class="tag blue">Ceramide NP</span>
-                <span class="tag blue">10-type Hyaluronic Acid</span>
-                <span class="tag blue">Collagen-Elastin Complex</span>
-                <span class="tag blue">3GF Complex</span>
-            </p>
-
-            <h3>Core Benefits (Clearly Defined)</h3>
-            <p style="margin: 12px 0;">
-                <span class="tag green">Barrier Repair</span>
-                <span class="tag green">Anti-wrinkle</span>
-                <span class="tag green">Deep Hydration</span>
-            </p>
-
-            <h3>Clinical Data (Human Application Test)</h3>
-            <div class="clinical-grid">
-                <div class="clinical-item">
-                    <div class="value">18~19%</div>
-                    <div class="label">Skin Barrier Improvement</div>
-                </div>
-                <div class="clinical-item">
-                    <div class="value">107~118%</div>
-                    <div class="label">Moisture Barrier Effect</div>
-                </div>
-                <div class="clinical-item">
-                    <div class="value">29~32%</div>
-                    <div class="label">Triple Hydration</div>
-                </div>
-                <div class="clinical-item">
-                    <div class="value">8~12%</div>
-                    <div class="label">Wrinkle Reduction</div>
+                    <h3>Partners</h3>
+                    <table>
+                        <tr>
+                            <th>STEP AI</th>
+                            <td>Business Consulting & Strategy (Korea)</td>
+                        </tr>
+                        <tr>
+                            <th>T&B International</th>
+                            <td>Local Distribution & Operations (Spain)</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Section 6: Agenda -->
-        <section>
-            <h2><span class="emoji">💬</span> Agenda</h2>
-            <ul class="discussion-list">
-                <li>
-                    <span class="num">1</span>
-                    <div>
-                        <strong>Formulation Optimization</strong><br>
-                        탄력감, 보습감, Standalone Performance 개선을 위한 CNF 협의 방향
-                    </div>
-                </li>
-                <li>
-                    <span class="num">2</span>
-                    <div>
-                        <strong>Core Benefit Definition</strong><br>
-                        단일 핵심 포지셔닝 설정 (Soothing / Hydration / Barrier Repair)
-                    </div>
-                </li>
-                <li>
-                    <span class="num">3</span>
-                    <div>
-                        <strong>Target Segmentation</strong><br>
-                        스페인 현지 소비자 기준 Target Persona 정의
-                    </div>
-                </li>
-                <li>
-                    <span class="num">4</span>
-                    <div>
-                        <strong>Packaging Improvement</strong><br>
-                        Dropper UX 이슈 해결 방안 (용기 구조 vs 제형 점도)
-                    </div>
-                </li>
-                <li>
-                    <span class="num">5</span>
-                    <div>
-                        <strong>Next Steps</strong><br>
-                        CNF 회신 일정, 2nd Sample 개발 및 검증 계획
-                    </div>
-                </li>
-            </ul>
-        </section>
-
-        <!-- Section 7: Meeting Notes -->
-        <section>
-            <h2><span class="emoji">📝</span> Meeting Notes (2025.02.04)</h2>
-
-            <h3>핵심 내용 요약</h3>
-            <table>
-                <tr>
-                    <th>주제</th>
-                    <th>내용</th>
-                </tr>
-                <tr>
-                    <td><strong>CNF 세럼</strong></td>
-                    <td>1차 샘플 피드백 전달 완료, 탄력감 등 개선 필요</td>
-                </tr>
-                <tr>
-                    <td><strong>REJU:CELIQUE</strong></td>
-                    <td>김재림 원장, 스페인 시장 진출에 관심 (2만원 이하 공급 의향)</td>
-                </tr>
-                <tr>
-                    <td><strong>제조 최소 수량</strong></td>
-                    <td>5,000개</td>
-                </tr>
-                <tr>
-                    <td><strong>유통 전략</strong></td>
-                    <td>초기 유통 → 점차 자체 제작 비중 확대</td>
-                </tr>
-                <tr>
-                    <td><strong>상표권</strong></td>
-                    <td>북유럽에 유사 사이트 존재, 등록 필요</td>
-                </tr>
-                <tr>
-                    <td><strong>CNF 커뮤니케이션</strong></td>
-                    <td>담당 차장 외 의사결정권자 확인 필요, 직접 통화 요청</td>
-                </tr>
-            </table>
-
-            <h3>Action Items</h3>
-            <table>
-                <tr>
-                    <th>담당</th>
-                    <th>할 일</th>
-                </tr>
-                <tr>
-                    <td><strong>Rose</strong></td>
-                    <td>수출 서류 리스트 이메일 전달</td>
-                </tr>
-                <tr>
-                    <td><strong>Rose</strong></td>
-                    <td>스페인 유통망 확보 및 문서화</td>
-                </tr>
-                <tr>
-                    <td><strong>박현우</strong></td>
-                    <td>CNF 연락 (목/금)</td>
-                </tr>
-                <tr>
-                    <td><strong>이원미</strong></td>
-                    <td>CNF 미팅 후 제품 셀렉</td>
-                </tr>
-                <tr>
-                    <td><strong>공동</strong></td>
-                    <td>상표권 등록 검토 (국내/유럽)</td>
-                </tr>
-                <tr>
-                    <td><strong>공동</strong></td>
-                    <td>단톡방 생성</td>
-                </tr>
-            </table>
-
-            <h3>추가 논의 필요</h3>
-            <ul class="discussion-list">
-                <li>
-                    <span class="num">1</span>
-                    <div>도메인/브랜드명 단축 (rosespickskbeauty → RPKB 등)</div>
-                </li>
-                <li>
-                    <span class="num">2</span>
-                    <div>아마존 대행업체 및 CNF 유럽 경험 확인</div>
-                </li>
-                <li>
-                    <span class="num">3</span>
-                    <div>스페인 타겟 고객군 정의 및 설문조사 설계</div>
-                </li>
-            </ul>
-        </section>
-
-        <!-- Section 8: EU Registration Documents -->
-        <section>
-            <h2><span class="emoji">📄</span> EU 화장품 등록 구비서류 (Belab Services)</h2>
-
-            <table>
-                <tr>
-                    <th>대행사</th>
-                    <td>Belab Services</td>
-                </tr>
-                <tr>
-                    <th>홈페이지</th>
-                    <td><a href="https://www.belabservices.com/" target="_blank">https://www.belabservices.com/</a></td>
-                </tr>
-                <tr>
-                    <th>연락처</th>
-                    <td>korea@belabservices.com</td>
-                </tr>
-                <tr>
-                    <th>목표</th>
-                    <td>PIF 작성 → EU CPNP 등록</td>
-                </tr>
-            </table>
-
-            <h3>서류 리스트</h3>
-            <table>
-                <tr>
-                    <th>No.</th>
-                    <th>서류명</th>
-                    <th>비고</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Label Design</td>
-                    <td>검토 후 표기 내용 안내 예정</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>MSDS (각 원료별)</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Certificate of Analysis</td>
-                    <td>Micro test 포함 (aerobic/anaerobic bacteria, Candida albicans, E.coli, Pseudomonas aeruginosa, Staphylococcus aureus)</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Stability Test</td>
-                    <td>3개월 이상</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Challenge Test</td>
-                    <td>수분 포함 제품만 해당</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Container TDS</td>
-                    <td>용기 재질 확인</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>GMP Declaration</td>
-                    <td>제조업체 발급</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Non-Animal Testing Statement</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Manufacturing Method</td>
-                    <td>제조 공정 설명</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Fragrance Allergen 81 List</td>
-                    <td>향료 포함 제품만</td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>Fragrance IFRA 51</td>
-                    <td>향료 포함 제품만</td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>Non-CMR Statement</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>13</td>
-                    <td>Non-Nano Materials Statement</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>14</td>
-                    <td>Non-Micro-Plastic Statement</td>
-                    <td></td>
-                </tr>
-            </table>
-
-            <div class="reference-box">
-                <h4>💡 참고사항</h4>
-                <p>제품에 따라 서류 제외/추가 가능. Belab Services에서 서류 준비 및 검토 지원</p>
+        <!-- 2. T&B PARK INTERNATIONAL -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span class="accordion-icon">▶</span>
+                <span class="accordion-title"><span class="emoji">🏢</span> T&B PARK INTERNATIONAL</span>
             </div>
-        </section>
-
-        <!-- Section 9: Government Support Programs -->
-        <section>
-            <h2><span class="emoji">🏛️</span> 정부지원사업</h2>
-
-            <h3>2026년 상반기 중소기업기술혁신개발사업</h3>
-            <table>
-                <tr>
-                    <th>소관부처</th>
-                    <td>중소벤처기업부</td>
-                </tr>
-                <tr>
-                    <th>수행기관</th>
-                    <td>중소기업기술정보진흥원</td>
-                </tr>
-                <tr>
-                    <th>신청기간</th>
-                    <td><strong style="color: #ef4444;">2026.01.26 ~ 2026.02.09 (마감 임박)</strong></td>
-                </tr>
-                <tr>
-                    <th>신청방법</th>
-                    <td>온라인 (IRIS)</td>
-                </tr>
-                <tr>
-                    <th>신청사이트</th>
-                    <td><a href="https://www.iris.go.kr/main.do" target="_blank">https://www.iris.go.kr/main.do</a></td>
-                </tr>
-                <tr>
-                    <th>공고 원문</th>
-                    <td><a href="https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000117262" target="_blank">bizinfo.go.kr 공고 바로가기</a></td>
-                </tr>
-                <tr>
-                    <th>문의</th>
-                    <td>1357 (중소기업 통합콜센터) / 1877-2041 (IRIS)</td>
-                </tr>
-            </table>
-
-            <h3>관련 세부과제</h3>
-            <p style="margin: 12px 0;">
-                <strong>글로벌선도기술개발:</strong>
-                <span class="tag blue">수출지향형</span>
-                <span class="tag blue">점프업</span>
-            </p>
-            <p style="margin: 12px 0;">
-                <strong>중소기업유망기술개발:</strong>
-                <span class="tag blue">K-뷰티</span>
-                <span class="tag blue">소셜벤처</span>
-                <span class="tag blue">초격차</span>
-            </p>
-
-            <h3>적합성 체크리스트</h3>
-            <div class="feedback-item positive">
-                <strong>✓ 중소기업 해당</strong>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <table>
+                        <tr>
+                            <th>Legal Entity</th>
+                            <td>Sociedad Limitada (SL)</td>
+                        </tr>
+                        <tr>
+                            <th>Established</th>
+                            <td>2025.12.05</td>
+                        </tr>
+                        <tr>
+                            <th>Headquarters</th>
+                            <td>Calle Cabo de Palos, Nº 11, Las Rozas de Madrid, 28290, Spain</td>
+                        </tr>
+                        <tr>
+                            <th>Representative</th>
+                            <td>PARK HYUN JOO (Rose)</td>
+                        </tr>
+                        <tr>
+                            <th>Business Scope</th>
+                            <td>CNAE 46.90 - Wholesale Trade (Intermediary)</td>
+                        </tr>
+                        <tr>
+                            <th>Tax ID (NIF)</th>
+                            <td>B24977886</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="feedback-item positive">
-                <strong>✓ K-뷰티 해당</strong>
-            </div>
-            <div class="feedback-item positive">
-                <strong>✓ 수출지향 (스페인/유럽)</strong>
-            </div>
+        </div>
 
-            <div class="reference-box">
-                <h4>💡 참고사항</h4>
-                <p>세부과제별 신청자격 확인 필요 (첨부파일 참조). 신청 주체 국내 법인 여부 확인 필요.</p>
+        <!-- 3. Rose's Picks K-beauty -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span class="accordion-icon">▶</span>
+                <span class="accordion-title"><span class="emoji">🌹</span> Rose's Picks K-beauty</span>
             </div>
-        </section>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p style="margin-bottom: 16px; color: #4b5563;"><strong>Curated K-beauty Distribution</strong> — 전문가 큐레이션 기반 신뢰성 확보</p>
 
-        <!-- Section 10: Quick Links -->
-        <section>
-            <h2><span class="emoji">🔗</span> Quick Links</h2>
-            <table>
-                <tr>
-                    <th>Rose's Picks K-beauty</th>
-                    <td><a href="https://rosespickskbeauty.com/" target="_blank">rosespickskbeauty.com</a></td>
-                </tr>
-                <tr>
-                    <th>CNF Cosmetics</th>
-                    <td><a href="https://www.cnfcos.com/" target="_blank">cnfcos.com</a></td>
-                </tr>
-                <tr>
-                    <th>리투클리닉</th>
-                    <td><a href="https://www.retooclinic.com/" target="_blank">retooclinic.com</a></td>
-                </tr>
-                <tr>
-                    <th>REJU:CELIQUE</th>
-                    <td><a href="https://rejucelique.com/" target="_blank">rejucelique.com</a></td>
-                </tr>
-            </table>
-        </section>
+                    <a href="https://rosespickskbeauty.com/" target="_blank" class="link-box">
+                        🌐 Official Website →
+                    </a>
+
+                    <h3>ODM Product Development</h3>
+                    <table>
+                        <tr>
+                            <th>Category</th>
+                            <td>Serum (All-in-One Concept)</td>
+                        </tr>
+                        <tr>
+                            <th>Manufacturing Partner</th>
+                            <td>
+                                CNF Cosmetics<br>
+                                <a href="https://www.cnfcos.com/" target="_blank" class="link-box" style="margin-top: 8px;">
+                                    🏭 CNF Website →
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>1st Sample QC 완료 / COA 대기</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. 1st Sample QC Report -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span class="accordion-icon">▶</span>
+                <span class="accordion-title"><span class="emoji">📋</span> 1st Sample QC Report</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p style="margin-bottom: 20px; color: #6b7280;">Panel: 6명 / Duration: 3일 / Method: Facial Application Test</p>
+
+                    <div class="feedback-item positive">
+                        <strong>✅ Viscosity & Spreadability</strong>
+                        요청 스펙 충족, 피부 부담 없이 도포되며 흡수 속도 양호
+                    </div>
+
+                    <div class="feedback-item positive">
+                        <strong>✅ Absorption Rate</strong>
+                        빠른 흡수, 잔여 끈적임 없음
+                        <br><span class="tag red">Action Required</span> 제형 존재감 부족 → 밸런스 재조정 필요
+                    </div>
+
+                    <div class="feedback-item negative">
+                        <strong>❌ Elasticity & Adherence</strong>
+                        탄력감 및 밀착력 미흡 → 성분 보강 또는 제형 재설계 검토
+                    </div>
+
+                    <div class="feedback-item negative">
+                        <strong>❌ Moisturizing & Finish</strong>
+                        수분 지속력 부족, 윤기감 미흡 → Hydration 성분 강화 필요
+                    </div>
+
+                    <div class="feedback-item negative">
+                        <strong>❌ Standalone Performance</strong>
+                        단독 사용 시 마무리감 부족 (추가 제품 필요하다는 피드백 다수)
+                        <br><span class="tag blue">Product Concept</span> All-in-One 컨셉에 부합하도록 제형 보완 필요
+                    </div>
+
+                    <div class="feedback-item negative">
+                        <strong>❌ Packaging UX</strong>
+                        Dropper 사용 시 액체가 역류하는 현상 발생
+                        <br>→ 용기 구조 또는 제형 점도 조정 필요
+                    </div>
+
+                    <div class="reference-box">
+                        <h4>💡 Strategic Recommendation</h4>
+                        <p>Target Skin Type 및 Core Benefit(진정/보습/장벽강화)을 명확히 정의하여 Brand Positioning 및 현지 유통 전략 수립 시 활용</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. 타겟 참고 제품 (CORTHE) -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span class="accordion-icon">▶</span>
+                <span class="accordion-title"><span class="emoji">📌</span> 타겟 참고 제품 (CORTHE)</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <div class="product-flex">
+                        <img src="images/corthe-bifida.png" alt="CORTHE BIFIDA AMPOULE">
+                        <table>
+                            <tr>
+                                <th>브랜드</th>
+                                <td>CORTHE (코르테)</td>
+                            </tr>
+                            <tr>
+                                <th>제품 라인</th>
+                                <td>Dermo rejuvenation</td>
+                            </tr>
+                            <tr>
+                                <th>제품명</th>
+                                <td>BIFIDA AMPOULE</td>
+                            </tr>
+                            <tr>
+                                <th>용량</th>
+                                <td>50mL</td>
+                            </tr>
+                            <tr>
+                                <th>핵심 효능</th>
+                                <td>Anti-Wrinkle, Skin Barrier Protection, Nourishing</td>
+                            </tr>
+                            <tr>
+                                <th>비고</th>
+                                <td><span class="tag red">CNF에서 이 제품 실물 요청함</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. CNF Response -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span class="accordion-icon">▶</span>
+                <span class="accordion-title"><span class="emoji">📩</span> CNF Response</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>CNF 답변 요약</h3>
+                    <table>
+                        <tr>
+                            <th>항목</th>
+                            <th>CNF 답변</th>
+                        </tr>
+                        <tr>
+                            <td><strong>탄력감/밀착력</strong></td>
+                            <td>점도 상승으로 해결 가능, 추가 성분보다 점도 보완 권장 (단가 이슈)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>흡수력/존재감</strong></td>
+                            <td>오일 성분 추가 시 해결 가능하나 사용감 완전히 달라짐</td>
+                        </tr>
+                        <tr>
+                            <td><strong>보습감/윤기감</strong></td>
+                            <td>오일 추가로 해결 가능</td>
+                        </tr>
+                        <tr>
+                            <td><strong>원스텝 컨셉</strong></td>
+                            <td>현재 제형은 토너/크림 병행용, 원스텝 시 베이스 처방 전면 변경 필요 (반유화/유화 타입)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>용기 흐름성</strong></td>
+                            <td>점도 상승 시 늘어짐 현상 해결 가능, 용기 구조 변경은 CNF 불가</td>
+                        </tr>
+                        <tr>
+                            <td><strong>타겟 제품</strong></td>
+                            <td>타겟 제품(CORTHE 등) 실물 요청</td>
+                        </tr>
+                    </table>
+
+                    <h3>CNF 요청 결정 사항</h3>
+                    <ul class="discussion-list">
+                        <li>
+                            <span class="num">1</span>
+                            <div>
+                                <strong>사용감 방향</strong><br>
+                                가볍게 유지 vs 무겁게 변경 (오일 추가)
+                            </div>
+                        </li>
+                        <li>
+                            <span class="num">2</span>
+                            <div>
+                                <strong>베이스 처방 변경</strong><br>
+                                원스텝 세럼으로 갈 것인지 (처방 전면 변경)
+                            </div>
+                        </li>
+                        <li>
+                            <span class="num">3</span>
+                            <div>
+                                <strong>타겟 제품 실물</strong><br>
+                                CORTHE 등 레퍼런스 제품 전달 가능 여부
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Reference: REJU:CELIQUE -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span class="accordion-icon">▶</span>
+                <span class="accordion-title"><span class="emoji">🔬</span> Reference: REJU:CELIQUE</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p style="margin-bottom: 16px; color: #6b7280;">Dermatologist-founded Brand — Target/Benefit이 명확히 정의된 레퍼런스</p>
+
+                    <table>
+                        <tr>
+                            <th>Brand</th>
+                            <td>REJU:CELIQUE (리쥬셀릭)</td>
+                        </tr>
+                        <tr>
+                            <th>Entity</th>
+                            <td>(주)제이알케이</td>
+                        </tr>
+                        <tr>
+                            <th>Affiliated Clinic</th>
+                            <td>
+                                리투클리닉<br>
+                                <a href="https://www.retooclinic.com/" target="_blank" class="link-box" style="margin-top: 8px;">
+                                    🏥 Clinic Website →
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Brand Website</th>
+                            <td>
+                                <a href="https://rejucelique.com/" target="_blank" class="link-box">
+                                    🌐 REJU:CELIQUE →
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <h3>Product Line</h3>
+                    <table>
+                        <tr>
+                            <th>PDRN Dual Repair Cream</th>
+                            <td>30g / Dual-functional (Brightening + Anti-wrinkle)</td>
+                        </tr>
+                        <tr>
+                            <th>PDRN Dual Repair Ampoule</th>
+                            <td>30ml / Dual-functional (Brightening + Anti-wrinkle)</td>
+                        </tr>
+                    </table>
+
+                    <h3>Product Overview & Clinical Data</h3>
+                    <div class="clinical-image">
+                        <img src="images/rejucelique-product.png" alt="REJU:CELIQUE 제품">
+                        <img src="images/rejucelique-brochure.png" alt="REJU:CELIQUE 브로셔">
+                        <img src="images/rejucelique-clinical.png" alt="REJU:CELIQUE 임상 데이터">
+                    </div>
+
+                    <h3>Key Ingredients</h3>
+                    <p style="margin: 12px 0;">
+                        <span class="tag blue">Micro PDRN 1,500 ppm</span>
+                        <span class="tag blue">Niosome Panthenol</span>
+                        <span class="tag blue">Ceramide NP</span>
+                        <span class="tag blue">10-type Hyaluronic Acid</span>
+                        <span class="tag blue">Collagen-Elastin Complex</span>
+                        <span class="tag blue">3GF Complex</span>
+                    </p>
+
+                    <h3>Core Benefits (Clearly Defined)</h3>
+                    <p style="margin: 12px 0;">
+                        <span class="tag green">Barrier Repair</span>
+                        <span class="tag green">Anti-wrinkle</span>
+                        <span class="tag green">Deep Hydration</span>
+                    </p>
+
+                    <h3>Clinical Data (Human Application Test)</h3>
+                    <div class="clinical-grid">
+                        <div class="clinical-item">
+                            <div class="value">18~19%</div>
+                            <div class="label">Skin Barrier Improvement</div>
+                        </div>
+                        <div class="clinical-item">
+                            <div class="value">107~118%</div>
+                            <div class="label">Moisture Barrier Effect</div>
+                        </div>
+                        <div class="clinical-item">
+                            <div class="value">29~32%</div>
+                            <div class="label">Triple Hydration</div>
+                        </div>
+                        <div class="clinical-item">
+                            <div class="value">8~12%</div>
+                            <div class="label">Wrinkle Reduction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Meeting Notes -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span class="accordion-icon">▶</span>
+                <span class="accordion-title"><span class="emoji">📝</span> Meeting Notes</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p style="margin-bottom: 16px; color: #6b7280;">2025.02.04 Conference</p>
+
+                    <h3>핵심 내용 요약</h3>
+                    <table>
+                        <tr>
+                            <th>주제</th>
+                            <th>내용</th>
+                        </tr>
+                        <tr>
+                            <td><strong>CNF 세럼</strong></td>
+                            <td>1차 샘플 피드백 전달 완료, 탄력감 등 개선 필요</td>
+                        </tr>
+                        <tr>
+                            <td><strong>REJU:CELIQUE</strong></td>
+                            <td>김재림 원장, 스페인 시장 진출에 관심 (2만원 이하 공급 의향)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>제조 최소 수량</strong></td>
+                            <td>5,000개</td>
+                        </tr>
+                        <tr>
+                            <td><strong>유통 전략</strong></td>
+                            <td>초기 유통 → 점차 자체 제작 비중 확대</td>
+                        </tr>
+                        <tr>
+                            <td><strong>상표권</strong></td>
+                            <td>북유럽에 유사 사이트 존재, 등록 필요</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CNF 커뮤니케이션</strong></td>
+                            <td>담당 차장 외 의사결정권자 확인 필요, 직접 통화 요청</td>
+                        </tr>
+                    </table>
+
+                    <h3>Action Items</h3>
+                    <table>
+                        <tr>
+                            <th>담당</th>
+                            <th>할 일</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Rose</strong></td>
+                            <td>수출 서류 리스트 이메일 전달</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rose</strong></td>
+                            <td>스페인 유통망 확보 및 문서화</td>
+                        </tr>
+                        <tr>
+                            <td><strong>박현우</strong></td>
+                            <td>CNF 연락 (목/금)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>이원미</strong></td>
+                            <td>CNF 미팅 후 제품 셀렉</td>
+                        </tr>
+                        <tr>
+                            <td><strong>공동</strong></td>
+                            <td>상표권 등록 검토 (국내/유럽)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>공동</strong></td>
+                            <td>단톡방 생성</td>
+                        </tr>
+                    </table>
+
+                    <h3>추가 논의 필요</h3>
+                    <ul class="discussion-list">
+                        <li>
+                            <span class="num">1</span>
+                            <div>도메인/브랜드명 단축 (rosespickskbeauty → RPKB 등)</div>
+                        </li>
+                        <li>
+                            <span class="num">2</span>
+                            <div>아마존 대행업체 및 CNF 유럽 경험 확인</div>
+                        </li>
+                        <li>
+                            <span class="num">3</span>
+                            <div>스페인 타겟 고객군 정의 및 설문조사 설계</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. EU 화장품 등록 관련 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span class="accordion-icon">▶</span>
+                <span class="accordion-title"><span class="emoji">📄</span> EU 화장품 등록 관련</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <table>
+                        <tr>
+                            <th>대행사</th>
+                            <td>Belab Services</td>
+                        </tr>
+                        <tr>
+                            <th>홈페이지</th>
+                            <td><a href="https://www.belabservices.com/" target="_blank">https://www.belabservices.com/</a></td>
+                        </tr>
+                        <tr>
+                            <th>연락처</th>
+                            <td>korea@belabservices.com</td>
+                        </tr>
+                        <tr>
+                            <th>목표</th>
+                            <td>PIF 작성 → EU CPNP 등록</td>
+                        </tr>
+                    </table>
+
+                    <h3>서류 리스트</h3>
+                    <table>
+                        <tr>
+                            <th>No.</th>
+                            <th>서류명</th>
+                            <th>비고</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Label Design</td>
+                            <td>검토 후 표기 내용 안내 예정</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>MSDS (각 원료별)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Certificate of Analysis</td>
+                            <td>Micro test 포함</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Stability Test</td>
+                            <td>3개월 이상</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Challenge Test</td>
+                            <td>수분 포함 제품만 해당</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Container TDS</td>
+                            <td>용기 재질 확인</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>GMP Declaration</td>
+                            <td>제조업체 발급</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Non-Animal Testing Statement</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Manufacturing Method</td>
+                            <td>제조 공정 설명</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Fragrance Allergen 81 List</td>
+                            <td>향료 포함 제품만</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Fragrance IFRA 51</td>
+                            <td>향료 포함 제품만</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Non-CMR Statement</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>Non-Nano Materials Statement</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Non-Micro-Plastic Statement</td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <div class="reference-box">
+                        <h4>💡 참고사항</h4>
+                        <p>제품에 따라 서류 제외/추가 가능. Belab Services에서 서류 준비 및 검토 지원</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. 지원사업 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span class="accordion-icon">▶</span>
+                <span class="accordion-title"><span class="emoji">🏛️</span> 지원사업</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>2026년 상반기 중소기업기술혁신개발사업</h3>
+                    <table>
+                        <tr>
+                            <th>소관부처</th>
+                            <td>중소벤처기업부</td>
+                        </tr>
+                        <tr>
+                            <th>수행기관</th>
+                            <td>중소기업기술정보진흥원</td>
+                        </tr>
+                        <tr>
+                            <th>신청기간</th>
+                            <td><strong style="color: #ef4444;">2026.01.26 ~ 2026.02.09 (마감 임박)</strong></td>
+                        </tr>
+                        <tr>
+                            <th>신청방법</th>
+                            <td>온라인 (IRIS)</td>
+                        </tr>
+                        <tr>
+                            <th>신청사이트</th>
+                            <td><a href="https://www.iris.go.kr/main.do" target="_blank">https://www.iris.go.kr/main.do</a></td>
+                        </tr>
+                        <tr>
+                            <th>공고 원문</th>
+                            <td><a href="https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000117262" target="_blank">bizinfo.go.kr 공고 바로가기</a></td>
+                        </tr>
+                        <tr>
+                            <th>문의</th>
+                            <td>1357 (중소기업 통합콜센터) / 1877-2041 (IRIS)</td>
+                        </tr>
+                    </table>
+
+                    <h3>관련 세부과제</h3>
+                    <p style="margin: 12px 0;">
+                        <strong>글로벌선도기술개발:</strong>
+                        <span class="tag blue">수출지향형</span>
+                        <span class="tag blue">점프업</span>
+                    </p>
+                    <p style="margin: 12px 0;">
+                        <strong>중소기업유망기술개발:</strong>
+                        <span class="tag blue">K-뷰티</span>
+                        <span class="tag blue">소셜벤처</span>
+                        <span class="tag blue">초격차</span>
+                    </p>
+
+                    <h3>적합성 체크리스트</h3>
+                    <div class="feedback-item positive">
+                        <strong>✓ 중소기업 해당</strong>
+                    </div>
+                    <div class="feedback-item positive">
+                        <strong>✓ K-뷰티 해당</strong>
+                    </div>
+                    <div class="feedback-item positive">
+                        <strong>✓ 수출지향 (스페인/유럽)</strong>
+                    </div>
+
+                    <div class="reference-box">
+                        <h4>💡 참고사항</h4>
+                        <p>세부과제별 신청자격 확인 필요 (첨부파일 참조). 신청 주체 국내 법인 여부 확인 필요.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Footer -->
         <footer>
             <p>STEP AI × T&B International | Confidential</p>
+            <p style="margin-top: 12px;">
+                <a href="https://rosespickskbeauty.com/" target="_blank">Rose's Picks</a>
+                <a href="https://www.cnfcos.com/" target="_blank">CNF Cosmetics</a>
+                <a href="https://rejucelique.com/" target="_blank">REJU:CELIQUE</a>
+            </p>
         </footer>
     </div>
+
+    <script>
+        function toggleAccordion(header) {
+            const accordion = header.parentElement;
+            const icon = header.querySelector('.accordion-icon');
+
+            accordion.classList.toggle('active');
+
+            if (accordion.classList.contains('active')) {
+                icon.textContent = '▼';
+            } else {
+                icon.textContent = '▶';
+            }
+        }
+    </script>
 </body>
 </html>
